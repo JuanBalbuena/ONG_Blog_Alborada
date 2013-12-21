@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+
+{% block contenido %}
+
+{% for entrada in entradas %}
+<article class="articulo">
+	<li>Autor: {{ entrada.Autor }}</li>
+	<hr>
+	<li>{{ entrada.Titulo }}</li>
+	<hr>
+	<li>{{ entrada.Fecha }}</li>
+	<hr>
+	<li>{{ entrada.Contenido|truncatewords:60 }} <a href="{% url 'principal.views.entrada' entrada.pk  %}"><button>Seguir leyendo</button></a></li>
+</article>
+{% endfor %}
+
+<div class="pagination">
+    <span class="step-links">
+        {% if entradas.has_previous %}
+            <a href="?page={{ entradas.previous_page_number }}">Anterior</a>
+        {% endif %}
+
+        <span class="current">
+            Pagina {{ entradas.number }} de {{ entradas.paginator.num_pages }}.
+        </span>
+
+        {% if entradas.has_next %}
+            <a href="?page={{ entradas.next_page_number }}">Siguiente</a>
+        {% endif %}
+    </span>
+</div>
+</section>
+{% endblock %}

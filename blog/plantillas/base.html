@@ -1,0 +1,16 @@
+<!doctype html>
+<html lang="es">
+<head>
+	<meta charset="UTF-8">
+	<title>{% block titulo %}Blog Alborada{% endblock %}</title>
+	<link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'/>
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+	<link rel="stylesheet" href="{{ STATIC_URL }}css/estilos.css">
+</head>
+<body>
+<header class="header"> <div class="logo"><h2>Logo</h2></div><div class="rotulo"><h2>Rotulo</h2></div></header>
+<nav><p><a href="#">Inicio</a> - <a href="#">Sobre Nosotros</a> - <a href="#">Contacto</a> - <a href="#">Apoyanos</a></p></nav>
+{% block contenido %}{% endblock %}
+
+</body>
+</html>

@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+
+{% block contenido %}
+<article class="articulo-view">
+	<ul>
+		<li>Autor: {{ entrada.Autor }}</li>
+		<br>
+		<li>{{ entrada.Titulo }}</li>
+		<br>
+		<li>{{ entrada.Fecha }}</li>
+		<br>
+		<li>{{ entrada.Contenido }}</li>
+	</ul>
+</article>
+
+{% if comentario %}
+		<span class="centrado">Comentarios:</span>
+{% endif %}
+
+<div class="comentario">
+	<ul>
+	{% for comentario in comentario %}
+		<div class="autor"><li>{{ comentario.autor }} - {{ comentario.fechacreacion }}</li></div>
+		<ul>
+			<div class="comentarios"><li>{{ comentario.mensaje }}</li></div>
+		</ul>
+	{% endfor %}
+</ul>
+</div>
+
+
+	<form action="{% url 'principal.views.poncomentario' entrada.id %}" method="POST">
+	{% csrf_token %}
+	<h3>Deja tu comentario</h3>
+		<p>Nombre: {{ form.autor }}</p>
+		<p>Mensaje: {{ form.mensaje|linebreaks }}</p>
+		<p><input type="submit" value="Enviar"></p>
+	</form>
+
+{% endblock %}
